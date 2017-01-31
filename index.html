@@ -1,42 +1,51 @@
 <!DOCTYPE html>
-<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Geolocation</title>
+</head>
+
 <body>
 
-<!-- Paragraphs for the accelerometer and magnetometer values. -->
-
-<br />
-
-<p id="x_acc">No accelerometer found.</p>
-<p id="y_acc"></p>
-<p id="z_acc"></p>
-
-<br />
-
-<p id="mag_alpha">No magnetometer found.</p>
-<p id="mag_beta"></p>
-<p id="mag_gamma"></p>
-
-
+<button onclick="getLocation()">Get location</button>
+<p id="geoloc">Geolocation not available.</p>
 
 <script>
 
-window.ondevicemotion = function(event) { 
-	var ax = event.accelerationIncludingGravity.x
-	var ay = event.accelerationIncludingGravity.y
-	var az = event.accelerationIncludingGravity.z
+var x = document.getElementById("geoloc");
 
-	document.querySelector("#x_acc").innerHTML = "X = " + ax;
-	document.querySelector("#y_acc").innerHTML = "Y = " + ay;
-	document.querySelector("#z_acc").innerHTML = "Z = " + az;
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
 }
 
-window.addEventListener("deviceorientation", function(event) {
-	document.querySelector("#mag_alpha").innerHTML = "alpha = " + event.alpha;
-	document.querySelector("#mag_beta").innerHTML = "beta = " + event.beta;
-	document.querySelector("#mag_gamma").innerHTML = "gamma = " + event.gamma;
-}, true);
+function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;	
+}
+
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            x.innerHTML = "User denied the request for Geolocation."
+            break;
+        case error.POSITION_UNAVAILABLE:
+            x.innerHTML = "Location information is unavailable."
+            break;
+        case error.TIMEOUT:
+            x.innerHTML = "The request to get user location timed out."
+            break;
+        case error.UNKNOWN_ERROR:
+            x.innerHTML = "An unknown error occurred."
+            break;
+    }
+}
 
 </script>
 
 </body>
 </html>
+ 
