@@ -1,71 +1,35 @@
 <!DOCTYPE html>
 <html>
-
-<!-- Andere Doctypes möglich: z.B. HTML 4.01 -->
-<!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> -->
-
-<head>
-	<!-- used charset (html5) -->
-	<meta charset="UTF-8">
-	<!-- <meta charset="ISO-8859-1"> -->
-
-	<title>The Raspberry Pi</title>
-
-	<!-- optimization of search-engine -->
-	<meta name="author" content="Me">
-	<meta name="description" content="Description of the content...">
-</head>
-
 <body>
-	<!-- East Asian languages: No problem with UTF-8 -->
-	<!-- <p> 您好 - こんにちは - 안녕하십니까 </p> -->
+
+ <canvas id="myCanvas" width="600" height="600" style="border:1px solid #000000;">
+</canvas> 
+
+<script>
+
+window.ondevicemotion = function(event) { 
+	ralpha = event.rotationRate.alpha;
+	rbeta = event.rotationRate.beta;
+	rgamma = event.rotationRate.gamma;
 	
-	<!-- new to HTML5: first part of a page, replaced the use of the commonly seen <div id="header"> -->
-	<header>
-		<!-- Heading 1 -->
-		<h1> The Raspberry Pi </h1>
-	</header>
+	var img = new Image();
+	img.src = "teco.jpg";
+	half_width = img.naturalWidth / 2;
+	half_height = img.naturalHeight / 2;
 
-	<!-- new to HTML5: certain part of the page-->
-	<section>
-		<p>
-			The Raspberry Pi is a credit card-sized
-			single-board computer.
-			<br>
-			It was developed by the Raspberry Pi Foundation.
-
-			<table>
-				<tr>
-					<td></td>
-					<td> Model A </td>
-					<td> Model B </td>
-				</tr>
-				<tr>
-					<td> RAM </td>
-					<td> 256 MB </td>
-					<td> 512 MB </td>
-				</tr>
-				<tr>
-					<td> Preis </td>
-					<td> 25 USD </td>
-					<td> 35 USD </td>
-				</tr>
-			</table>
-
-		<p>
-			Check out this <a href="http://en.wikipedia.org/wiki/Raspberry_Pi">link</a>.
-			<br>
-			And finally a picture:
-		</p>
-
-		<!-- Different heights/widths possible -->
-		<img src="img\raspi.jpg" width="400" height="250" alt="Raspberry Pi" title="Raspberry Pi">
-		
-	</section>
-
-	<footer>
-		The end.
-	</footer>
+	var c = document.getElementById("myCanvas");
+	var context = c.getContext("2d");
+	var canvasWidth = 600;
+	var canvasHeight = 600; 
 	
+	context.clearRect(0, 0, canvasWidth, canvasHeight);
+	context.translate(canvasWidth/2, canvasWidth/2);
+	context.rotate( 0.895 * rgamma * (Math.PI / 180));
+	context.translate(-canvasWidth/2, -canvasWidth/2);
+	context.drawImage(img, canvasWidth/2 - half_width, canvasHeight/2 - half_height);
+}
+
+</script>
+
 </body>
 </html>
