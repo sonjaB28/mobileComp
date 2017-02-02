@@ -23,20 +23,6 @@ window.addEventListener("deviceorientation", function(event) {
 	beta = event.beta;
 	gamma = event.gamma;
 
-	var img = new Image();
-	img.src = "iah.jpg";
-	half_width = img.naturalWidth / 2;
-	half_height = img.naturalHeight / 2;
-
-	var c = document.getElementById("myCanvas");
-	var context = c.getContext("2d");
-	var canvasWidth = 600;
-	var canvasHeight = 600;
-	
-	context.clearRect(0, 0, canvasWidth, canvasHeight);
-	context.drawImage(img, canvasWidth, canvasHeight);
-
-
 
 	document.querySelector("#mag_alpha").innerHTML = "alpha = " + alpha;
 	document.querySelector("#mag_beta").innerHTML = "beta = " + beta;
@@ -67,6 +53,6 @@ window.ondevicemotion = function(event) {
 
 
 </script>
-<p>UPDated</p>
+<p>UPDatedkuzhgtf</p>
 </body>
 </html>
