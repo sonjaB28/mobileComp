@@ -1,6 +1,6 @@
 
-var x_pos = 0;
-var y_pos = 0;
+var x_pos = 10;
+var y_pos = 10;
 
 function changeImage(alpha, beta, gamma) {
 	var img = new Image();
