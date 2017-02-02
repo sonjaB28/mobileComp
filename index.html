@@ -2,7 +2,7 @@
 <html>
 <body>
 
-
+<script src="js/script.js"></script>
 <canvas id="iahCanvas" width="600" height="600" style="border:1px solid #000000;">
 </canvas> 
 
@@ -24,58 +24,14 @@ window.addEventListener("deviceorientation", function(event) {
 	beta = event.beta;
 	gamma = event.gamma;
 	
-	var img = new Image();
-	img.src = "iah.jpg";
-	half_width = img.naturalWidth / 2;
-	half_height = img.naturalHeight / 2;
-
-	var c = document.getElementById("iahCanvas");
-	var context = c.getContext("2d");
-	var canvasWidth = 600;
-	var canvasHeight = 600; 
-	
-	add = 0;
-	if(gamma < 0) {
-		add = -1;
-	} else {
-		add = 1;
-	}
-	
-	context.clearRect(0, 0, canvasWidth, canvasHeight);
-	context.translate(Math.sign(gamma)*2, 0);
-	context.drawImage(img, canvasWidth/2 - half_width, canvasHeight/2 - half_height);
-
+	changeImage(alpha, beta, gamma);
 
 	document.querySelector("#mag_alpha").innerHTML = "alpha = " + alpha;
 	document.querySelector("#mag_beta").innerHTML = "beta = " + beta;
 	document.querySelector("#mag_gamma").innerHTML = "gamma = " + gamma;
 }, true);
 
-/*
-window.ondevicemotion = function(event) { 
-	ralpha = event.rotationRate.alpha;
-	rbeta = event.rotationRate.beta;
-	rgamma = event.rotationRate.gamma;
-	
-	var img = new Image();
-	img.src = "teco.jpg";
-	half_width = img.naturalWidth / 2;
-	half_height = img.naturalHeight / 2;
-
-	var c = document.getElementById("myCanvas");
-	var context = c.getContext("2d");
-	var canvasWidth = 600;
-	var canvasHeight = 600; 
-	
-	context.clearRect(0, 0, canvasWidth, canvasHeight);
-	context.translate(canvasWidth/2, canvasWidth/2);
-	context.rotate( 0.895 * rgamma * (Math.PI / 180));
-	context.translate(-canvasWidth/2, -canvasWidth/2);
-	context.drawImage(img, canvasWidth/2 - half_width, canvasHeight/2 - half_height);
-}*/
-
-
 </script>
-<p>UPDated 7</p>
+<p>UPDated 8</p>
 </body>
 </html>
