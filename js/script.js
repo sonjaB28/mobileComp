@@ -12,13 +12,13 @@ function changeImage(alpha, beta, gamma) {
 
 	var c = document.getElementById("iahCanvas");
 	var context = c.getContext("2d");
-	var canvasWidth = 600-1;
-	var canvasHeight = 600-1; 
+	var canvasWidth = 600;
+	var canvasHeight = 600; 
 	
-	left_border = 0;
-	right_border = canvasWidth-img.naturalWidth;
-	upper_border = 0;
-	lower_border = canvasHeight-img.naturalHeight;
+	left_border = 1;
+	right_border = canvasWidth-img.naturalWidth-1;
+	upper_border = 1;
+	lower_border = canvasHeight-img.naturalHeight-1;
 	
 	
 	add_to_x = updatePosition(x_pos, left_border, right_border, gamma);
@@ -26,7 +26,7 @@ function changeImage(alpha, beta, gamma) {
 		
 	context.clearRect(0, 0, canvasWidth, canvasHeight);
 	context.translate(add_to_x, add_to_y);
-	context.drawImage(img, 1, 1);
+	context.drawImage(img, 0, 0);
 	
 	x_pos = x_pos + add_to_x;
 	y_pos = y_pos + add_to_y;
