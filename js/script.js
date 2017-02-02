@@ -12,12 +12,17 @@ function changeImage(alpha, beta, gamma) {
 	var canvasHeight = 600; 
 		
 	context.clearRect(0, 0, canvasWidth, canvasHeight);
-	context.translate(Math.sign(gamma)*4, 0);
+	context.translate(valueRange(gamma)*4, valueRange(beta)*4);
 	context.drawImage(img, canvasWidth/2 - half_width, canvasHeight/2 - half_height);
 }
 
-function printValue(sliderID, textbox) {
-	var x = document.getElementById(textbox);
-	var y = document.getElementById(sliderID);
-	x.value = y.value;
+function valueRange(value) {
+	range = 10;
+	if(value < -range) {
+		return -1;
+	} else if(value > range) {
+		return 1;
+	} else {
+		return 0;
+	}
 }
