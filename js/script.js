@@ -1,6 +1,8 @@
 
 var x_pos = 0;
 var y_pos = 0;
+var movement = 4;
+var range = 2;
 
 function changeImage(alpha, beta, gamma) {
 	var img = new Image();
@@ -12,7 +14,6 @@ function changeImage(alpha, beta, gamma) {
 	var context = c.getContext("2d");
 	var canvasWidth = 600;
 	var canvasHeight = 600; 
-	var movement = 4;
 	
 	left_border = 0;
 	right_border = canvasWidth-half_width;
@@ -20,14 +21,8 @@ function changeImage(alpha, beta, gamma) {
 	lower_border = canvasHeight-half_height;
 	
 	
-	add_to_x = 0;
-	add_to_y = 0;
-	if(x_pos >= left_border && x_pos <= right_border) {		
-		add_to_x = valueRange(gamma)*movement;
-	}
-	if(y_pos >= upper_border && y_pos <= lower_border) {
-		add_to_y = valueRange(beta)*movement;
-	}	
+	add_to_x = updatePosition(x_pos, left_border, right_border, gamma);
+	add_to_y = updatePosition(y_pos, upper_border, lower_border, beta);	
 		
 	context.clearRect(0, 0, canvasWidth, canvasHeight);
 	context.translate(add_to_x, add_to_y);
@@ -38,8 +33,17 @@ function changeImage(alpha, beta, gamma) {
 	//canvasHeight/2 - half_height
 }
 
+function updatePosition(pos, negativeBorder, positiveBorder, orientation) {
+	if(pos <= negativeBorder) {
+		return negativeBorder+1 - pos;
+	} else if(pos >= positiveBorder) {
+		return positiveBorder-1 - pos;
+	} else {
+		return valueRange(orientation)*movement;
+	}
+}
+
 function valueRange(value) {
-	var range = 2;
 	if(value < -range) {
 		return -1;
 	} else if(value > range) {
