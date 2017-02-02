@@ -1,14 +1,36 @@
 
 var x_pos = 0;
 var y_pos = 0;
+var alpha_standard = 0;
+var beta_standard = 0;
+var gamma_standard = 0;
 
 var movement = 4;
 var range = 2;
+var doCalibrate = true;
 
-function calibrate(alpha, beta, gamma) {
-	var alpha_standard = alpha;
-	var beta_standard = beta;
-	var gamma_standard = gamma;
+function deviceOrientationChanged(event) {
+	var alpha = event.alpha;
+	var beta = event.beta;
+	var gamma = event.gamma;
+	
+	if(doCalibrate == true) {
+		alpha_standard = alpha;
+		beta_standard = beta;
+		gamma_standard = gamma;
+		doCalibrate = false;
+	}
+	
+	changeImage(alpha_standard-alpha, beta_standard-beta, gamma_standard-gamma);
+
+	document.querySelector("#mag_alpha").innerHTML = "alpha = " + alpha;
+	document.querySelector("#mag_beta").innerHTML = "beta = " + beta;
+	document.querySelector("#mag_gamma").innerHTML = "gamma = " + gamma;
+	
+}
+
+function calibrate() {
+	doCalibrate = true;
 }
 
 function changeImage(alpha, beta, gamma) {
@@ -28,8 +50,8 @@ function changeImage(alpha, beta, gamma) {
 	lower_border = canvasHeight-img.naturalHeight;
 	
 	
-	add_to_x = updatePosition(x_pos, left_border, right_border, gamma_standard-gamma);
-	add_to_y = updatePosition(y_pos, upper_border, lower_border, beta_standard-beta);	
+	add_to_x = updatePosition(x_pos, left_border, right_border, gamma);
+	add_to_y = updatePosition(y_pos, upper_border, lower_border, beta);	
 		
 	context.clearRect(0, 0, canvasWidth, canvasHeight);
 	context.translate(add_to_x, add_to_y);

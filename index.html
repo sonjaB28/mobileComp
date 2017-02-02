@@ -3,11 +3,16 @@
 <body>
 
 <script src="js/script.js"></script>
+<input type="button" value="Calibrate" id="Calibrate" onclick="calibrate()" />
+<br/>
+
+
+
 <canvas id="iahCanvas" width="600" height="600" style="border:1px solid #000000;">
 </canvas> 
 
 <!-- Paragraphs for the magnetometer values. -->
-<input type="button" value="Calibrate" id="calibrate" onclick="calibrate()" />
+
 <br />
 
 <p id="mag_alpha">No magnetometer found.</p>
@@ -18,24 +23,11 @@
 
 
 <script>
-function calibrate() {
-	calibrateOrientation(alpha, beta, gamma);
-}
-
-
 window.addEventListener("deviceorientation", function(event) {
-	var alpha = event.alpha;
-	var beta = event.beta;
-	var gamma = event.gamma;
-	
-	changeImage(alpha, beta, gamma);
-
-	document.querySelector("#mag_alpha").innerHTML = "alpha = " + alpha;
-	document.querySelector("#mag_beta").innerHTML = "beta = " + beta;
-	document.querySelector("#mag_gamma").innerHTML = "gamma = " + gamma;
+	deviceOrientationChanged(event);
 }, true);
 
 </script>
-<p>UPDated 22</p>
+<p>UPDated 24</p>
 </body>
 </html>
