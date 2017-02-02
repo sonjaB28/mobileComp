@@ -43,6 +43,29 @@ window.addEventListener("deviceorientation", function(event) {
 	document.querySelector("#mag_gamma").innerHTML = "gamma = " + gamma;
 }, true);
 
+window.ondevicemotion = function(event) { 
+	ralpha = event.rotationRate.alpha;
+	rbeta = event.rotationRate.beta;
+	rgamma = event.rotationRate.gamma;
+	
+	var img = new Image();
+	img.src = "teco.jpg";
+	half_width = img.naturalWidth / 2;
+	half_height = img.naturalHeight / 2;
+
+	var c = document.getElementById("myCanvas");
+	var context = c.getContext("2d");
+	var canvasWidth = 600;
+	var canvasHeight = 600; 
+	
+	context.clearRect(0, 0, canvasWidth, canvasHeight);
+	context.translate(canvasWidth/2, canvasWidth/2);
+	context.rotate( 0.895 * rgamma * (Math.PI / 180));
+	context.translate(-canvasWidth/2, -canvasWidth/2);
+	context.drawImage(img, canvasWidth/2 - half_width, canvasHeight/2 - half_height);
+}
+
+
 </script>
 <p>UPDated</p>
 </body>
