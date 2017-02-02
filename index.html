@@ -7,7 +7,7 @@
 </canvas> 
 
 <!-- Paragraphs for the magnetometer values. -->
-
+<input type="button" value="Calibrate" id="calibrate" onclick="calibrate(alpha, beta, gamma)" />
 <br />
 
 <p id="mag_alpha">No magnetometer found.</p>
@@ -16,13 +16,15 @@
 
 
 
+
 <script>
 
 
+
 window.addEventListener("deviceorientation", function(event) {
-	alpha = event.alpha;
-	beta = event.beta;
-	gamma = event.gamma;
+	var alpha = event.alpha;
+	var beta = event.beta;
+	var gamma = event.gamma;
 	
 	changeImage(alpha, beta, gamma);
 
@@ -32,6 +34,6 @@ window.addEventListener("deviceorientation", function(event) {
 }, true);
 
 </script>
-<p>UPDated 20</p>
+<p>UPDated 21</p>
 </body>
 </html>

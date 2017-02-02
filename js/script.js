@@ -1,8 +1,15 @@
 
 var x_pos = 0;
 var y_pos = 0;
+
 var movement = 4;
 var range = 2;
+
+function calibrate(alpha, beta, gamma) {
+	var alpha_standard = alpha;
+	var beta_standard = beta;
+	var gamma_standard = gamma;
+}
 
 function changeImage(alpha, beta, gamma) {
 	var img = new Image();
@@ -21,8 +28,8 @@ function changeImage(alpha, beta, gamma) {
 	lower_border = canvasHeight-img.naturalHeight;
 	
 	
-	add_to_x = updatePosition(x_pos, left_border, right_border, gamma);
-	add_to_y = updatePosition(y_pos, upper_border, lower_border, beta);	
+	add_to_x = updatePosition(x_pos, left_border, right_border, gamma_standard-gamma);
+	add_to_y = updatePosition(y_pos, upper_border, lower_border, beta_standard-beta);	
 		
 	context.clearRect(0, 0, canvasWidth, canvasHeight);
 	context.translate(add_to_x, add_to_y);
@@ -30,7 +37,6 @@ function changeImage(alpha, beta, gamma) {
 	
 	x_pos = x_pos + add_to_x;
 	y_pos = y_pos + add_to_y;
-	//canvasHeight/2 - half_height
 }
 
 function updatePosition(pos, negativeBorder, positiveBorder, orientation) {
