@@ -16,9 +16,9 @@ function changeImage(alpha, beta, gamma) {
 	var canvasHeight = 600; 
 	
 	left_border = 0;
-	right_border = canvasWidth-half_width;
+	right_border = canvasWidth-img.naturalWidth;
 	upper_border = 0;
-	lower_border = canvasHeight-half_height;
+	lower_border = canvasHeight-img.naturalHeight;
 	
 	
 	add_to_x = updatePosition(x_pos, left_border, right_border, gamma);
@@ -35,9 +35,9 @@ function changeImage(alpha, beta, gamma) {
 
 function updatePosition(pos, negativeBorder, positiveBorder, orientation) {
 	if(pos <= negativeBorder) {
-		return negativeBorder+1 - pos;
+		return negativeBorder - pos;
 	} else if(pos >= positiveBorder) {
-		return positiveBorder-1 - pos;
+		return positiveBorder - pos;
 	} else {
 		return valueRange(orientation)*movement;
 	}
