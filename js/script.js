@@ -22,10 +22,10 @@ function changeImage(alpha, beta, gamma) {
 	
 	add_to_x = 0;
 	add_to_y = 0;
-	if(x_pos > left_border && x_pos < right_border) {		
+	if(x_pos >= left_border && x_pos <= right_border) {		
 		add_to_x = valueRange(gamma)*movement;
 	}
-	if(y_pos > upper_border && y_pos < lower_border) {
+	if(y_pos >= upper_border && y_pos <= lower_border) {
 		add_to_y = valueRange(beta)*movement;
 	}	
 		
