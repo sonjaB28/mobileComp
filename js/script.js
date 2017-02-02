@@ -21,7 +21,7 @@ function deviceOrientationChanged(event) {
 		doCalibrate = false;
 	}
 	
-	changeImage(alpha_standard-alpha, beta_standard-beta, gamma_standard-gamma);
+	changeImage(alpha-alpha_standard, beta-beta_standard, gamma-gamma_standard);
 
 	document.querySelector("#mag_alpha").innerHTML = "alpha = " + alpha;
 	document.querySelector("#mag_beta").innerHTML = "beta = " + beta;
