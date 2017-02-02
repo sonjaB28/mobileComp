@@ -1,51 +1,50 @@
 <!DOCTYPE html>
-
-<head>
-	<meta charset="utf-8">
-	<title>Geolocation</title>
-</head>
-
+<html>
 <body>
 
-<button onclick="getLocation()">Get location</button>
-<p id="geoloc">Geolocation not available.</p>
+<canvas id="myCanvas" width="600" height="600" style="border:1px solid #000000;">
+</canvas> 
+
+<!-- Paragraphs for the magnetometer values. -->
+
+<br />
+
+<p id="mag_alpha">No magnetometer found.</p>
+<p id="mag_beta"></p>
+<p id="mag_gamma"></p>
+
+
 
 <script>
 
-var x = document.getElementById("geoloc");
+window.addEventListener("deviceorientation", function(event) {
 
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition, showError);
-    } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-}
+	alpha = event.alpha;
+	beta = event.beta;
+	gamma = event.gamma;
 
-function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;	
-}
+	var img = new Image();
+	img.src = "iah.jpg";
+	half_width = img.naturalWidth / 2;
+	half_height = img.naturalHeight / 2;
 
-function showError(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            x.innerHTML = "User denied the request for Geolocation."
-            break;
-        case error.POSITION_UNAVAILABLE:
-            x.innerHTML = "Location information is unavailable."
-            break;
-        case error.TIMEOUT:
-            x.innerHTML = "The request to get user location timed out."
-            break;
-        case error.UNKNOWN_ERROR:
-            x.innerHTML = "An unknown error occurred."
-            break;
-    }
-}
+	var c = document.getElementById("myCanvas");
+	var context = c.getContext("2d");
+	var canvasWidth = 600;
+	var canvasHeight = 600;
+	
+	context.clearRect(0, 0, canvasWidth, canvasHeight);
+	context.translate(canvasWidth/2, canvasWidth/2);
+	context.drawImage(img, canvasWidth/2 - half_width, canvasHeight/2 - half_height);
+
+
+
+	document.querySelector("#mag_alpha").innerHTML = "alpha = " + alpha;
+	document.querySelector("#mag_beta").innerHTML = "beta = " + beta;
+	document.querySelector("#mag_gamma").innerHTML = "gamma = " + gamma;
+}, true);
 
 </script>
 
 </body>
 </html>
- 
