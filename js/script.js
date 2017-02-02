@@ -1,6 +1,6 @@
 
-var x_pos = 10;
-var y_pos = 10;
+var x_pos = 0;
+var y_pos = 0;
 
 function changeImage(alpha, beta, gamma) {
 	var img = new Image();
@@ -23,10 +23,10 @@ function changeImage(alpha, beta, gamma) {
 	add_to_x = 0;
 	add_to_y = 0;
 	if(x_pos > left_border && x_pos < right_border) {		
-		new_x_pos = valueRange(gamma)*movement;
+		add_to_x = valueRange(gamma)*movement;
 	}
 	if(y_pos > upper_border && y_pos < lower_border) {
-		new_y_pos = valueRange(beta)*movement;
+		add_to_y = valueRange(beta)*movement;
 	}	
 		
 	context.clearRect(0, 0, canvasWidth, canvasHeight);
