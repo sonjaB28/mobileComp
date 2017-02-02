@@ -9,15 +9,22 @@ function changeImage(alpha, beta, gamma) {
 	var c = document.getElementById("iahCanvas");
 	var context = c.getContext("2d");
 	var canvasWidth = 600;
-	var canvasHeight = 600; 
-		
+	var canvasHeight = 600;
+	
+	var x_pos = canvasWidth/2 - half_width;
+	var y_pos = canvasHeight/2 - half_height;	
+	
 	context.clearRect(0, 0, canvasWidth, canvasHeight);
-	context.translate(valueRange(gamma)*4, valueRange(beta)*4);
-	context.drawImage(img, canvasWidth/2 - half_width, canvasHeight/2 - half_height);
+	context.drawImage(img, updatePosition(x_pos,gamme), updatePosition(y_pos,beta));
+}
+
+function updatePosition(position, value) {
+	var movement = 4;
+	return position + valueRange(value) * movement;
 }
 
 function valueRange(value) {
-	range = 10;
+	var range = 2;
 	if(value < -range) {
 		return -1;
 	} else if(value > range) {
