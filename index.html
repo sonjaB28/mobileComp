@@ -2,8 +2,6 @@
 <html>
 <body>
 
-<canvas id="myCanvas" width="600" height="600" style="border:1px solid #000000;">
-</canvas> 
 
 <canvas id="iahCanvas" width="600" height="600" style="border:1px solid #000000;">
 </canvas> 
@@ -19,6 +17,7 @@
 
 
 <script>
+
 
 window.addEventListener("deviceorientation", function(event) {
 
@@ -45,7 +44,8 @@ window.addEventListener("deviceorientation", function(event) {
 	document.querySelector("#mag_gamma").innerHTML = "gamma = " + gamma;
 }, true);
 
-//window.ondevicemotion = function(event) { 
+/*
+window.ondevicemotion = function(event) { 
 	ralpha = event.rotationRate.alpha;
 	rbeta = event.rotationRate.beta;
 	rgamma = event.rotationRate.gamma;
@@ -65,10 +65,10 @@ window.addEventListener("deviceorientation", function(event) {
 	context.rotate( 0.895 * rgamma * (Math.PI / 180));
 	context.translate(-canvasWidth/2, -canvasWidth/2);
 	context.drawImage(img, canvasWidth/2 - half_width, canvasHeight/2 - half_height);
-}
+}*/
 
 
 </script>
-<p>UPDated 3</p>
+<p>UPDated 4</p>
 </body>
 </html>
