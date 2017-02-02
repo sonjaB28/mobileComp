@@ -1,4 +1,6 @@
 
+var x_pos = 0;
+var y_pos = 0;
 
 function changeImage(alpha, beta, gamma) {
 	var img = new Image();
@@ -9,20 +11,31 @@ function changeImage(alpha, beta, gamma) {
 	var c = document.getElementById("iahCanvas");
 	var context = c.getContext("2d");
 	var canvasWidth = 600;
-	var canvasHeight = 600;
-	
-	var x_pos = canvasWidth/2 - half_width;
-	var y_pos = canvasHeight/2 - half_height;	
-	new_x_pos = updatePosition(x_pos,gamma);
-	new_y_pos = updatePosition(y_pos,beta);
-	
-	context.clearRect(0, 0, canvasWidth, canvasHeight);
-	context.drawImage(img, new_x_pos, new_y_pos);
-}
-
-function updatePosition(position, value) {
+	var canvasHeight = 600; 
 	var movement = 4;
-	return position + valueRange(value) * movement;
+	
+	left_border = 0;
+	right_border = canvasWidth-half_width;
+	upper_border = 0;
+	lower_border = canvasHeight-half_height;
+	
+	
+	add_to_x = 0;
+	add_to_y = 0;
+	if(x_pos > left_border && x_pos < right_border) {		
+		new_x_pos = valueRange(gamma)*movement;
+	}
+	if(y_pos > upper_border && y_pos < lower_border) {
+		new_y_pos = valueRange(beta)*movement;
+	}	
+		
+	context.clearRect(0, 0, canvasWidth, canvasHeight);
+	context.translate(add_to_x, add_to_y);
+	context.drawImage(img, 0, 0);
+	
+	x_pos = x_pos + add_to_x;
+	y_pos = y_pos + add_to_y;
+	//canvasHeight/2 - half_height
 }
 
 function valueRange(value) {
