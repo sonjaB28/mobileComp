@@ -20,7 +20,6 @@
 
 
 window.addEventListener("deviceorientation", function(event) {
-
 	alpha = event.alpha;
 	beta = event.beta;
 	gamma = event.gamma;
@@ -35,7 +34,15 @@ window.addEventListener("deviceorientation", function(event) {
 	var canvasWidth = 600;
 	var canvasHeight = 600; 
 	
+	add = 0;
+	if(gamma < 0) {
+		add = -1;
+	} else {
+		add = 1;
+	}
+	
 	context.clearRect(0, 0, canvasWidth, canvasHeight);
+	context.translate(context.position + add * 10);
 	context.drawImage(img, canvasWidth/2 - half_width, canvasHeight/2 - half_height);
 
 
@@ -69,6 +76,6 @@ window.ondevicemotion = function(event) {
 
 
 </script>
-<p>UPDated 4</p>
+<p>UPDated 5</p>
 </body>
 </html>
