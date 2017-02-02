@@ -35,9 +35,9 @@ function changeImage(alpha, beta, gamma) {
 
 function updatePosition(pos, negativeBorder, positiveBorder, orientation) {
 	if(pos <= negativeBorder) {
-		return negativeBorder+1 - pos;
+		return negativeBorder - pos;
 	} else if(pos >= positiveBorder) {
-		return positiveBorder-1 - pos;
+		return positiveBorder - pos;
 	} else {
 		return valueRange(orientation)*movement;
 	}
