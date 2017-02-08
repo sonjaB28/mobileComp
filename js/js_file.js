@@ -16,7 +16,7 @@ function isMobile(){
     return navigator.userAgent.match(/(iPhone|iPod|iPad|blackberry|android|Kindle|htc|lg|midp|mmp|mobile|nokia|opera mini|palm|pocket|psp|sgh|smartphone|symbian|treo mini|Playstation Portable|SonyEricsson|Samsung|MobileExplorer|PalmSource|Benq|Windows Phone|Windows Mobile|IEMobile|Windows CE|Nintendo Wii)/i);
 }
 
-window.onload = function() {setImages();}
+//window.onload = function() {setImages();}
 
 function setImages() {	
 	
