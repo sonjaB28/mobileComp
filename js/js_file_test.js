@@ -1,13 +1,8 @@
 
-x_pos = 5;
-y_pos = 5;
 alpha_standard = 0;
 beta_standard = 0;
 gamma_standard = 0;
 
-movement = 6;
-range = 2;
-doCalibrate = true;
 
 // Mobile Usage 
 
@@ -25,7 +20,7 @@ function deviceOrientationChanged(event) {
 	actorImg2.src = "img/iah.jpg";
 	var c2 = document.getElementById("canvas");
 	context2 = c2.getContext("2d");
-	context2.translate(15,0);
+	//context2.translate(15,0);
 	context2.drawImage(actorImg2, 0, 0);
 
 	document.querySelector("#mag_alpha").innerHTML = "alpha = " + alpha;
