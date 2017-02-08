@@ -26,6 +26,8 @@ function init() {
 	// load canvas
 	var canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");
+	context.canvas.width  = window.innerWidth;
+	context.canvas.height = window.innerHeight;
 	
 	// draw background
 	context.setTransform(1,0,0,1, 0, 0);
