@@ -1,12 +1,4 @@
-// src files
-actorImg_src = "img/iah.jpg";
-bgImg_src = "img/MrLaba.jpg";
 
-// gloabl variables
-
-movement = 6;
-range = 2;
-doCalibrate = true;
 
 
 
