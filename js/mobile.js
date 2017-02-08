@@ -45,6 +45,8 @@ function init() {
 	context.setTransform(1,0,0,1, x_pos, y_pos);
 }
 
+window.onload = function() {init();}
+
 window.addEventListener("deviceorientation", function(event) {
 	var alpha = event.alpha;
 	var beta = event.beta;
