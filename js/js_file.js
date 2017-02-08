@@ -76,9 +76,9 @@ window.addEventListener("keydown", function(e) {
 
 window.addEventListener("deviceorientation", deviceOrientationChanged(event), true);
 
-function deviceOrientationChanged(e) {
-	var event = window.event||e;
-	setImages();
+function deviceOrientationChanged(event) {
+	//var event = window.event||e;
+	//setImages();
 	
 	var alpha = event.alpha;
 	var beta = event.beta;
@@ -90,10 +90,12 @@ function deviceOrientationChanged(e) {
 		gamma_standard = gamma;
 		doCalibrate = false;
 	}
+	var actorImg2 = new Image();
+	actorImg2.src = "img/iah.jpg";
 	var c2 = document.getElementById("canvas");
 	context2 = c2.getContext("2d");
 	context2.translate(15,0);
-	context2.drawImage(actorImg, 0, 0);
+	context2.drawImage(actorImg2, 0, 0);
 	//update(alpha-alpha_standard, beta-beta_standard, gamma-gamma_standard);
 
 	document.querySelector("#mag_alpha").innerHTML = "alpha = " + alpha;
