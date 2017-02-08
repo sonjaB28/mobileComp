@@ -1,9 +1,16 @@
 
+x_pos = 5;
+y_pos = 5;
 alpha_standard = 0;
 beta_standard = 0;
 gamma_standard = 0;
 
 
+
+movement = 6;
+range = 2;
+doCalibrate = true;
+text = "start: ";
 // Mobile Usage 
 
 window.addEventListener("deviceorientation", function(event) {
@@ -12,8 +19,8 @@ window.addEventListener("deviceorientation", function(event) {
 	var gamma = event.gamma;
 	
 
-	var actorImg2 = new Image();
-	actorImg2.src = "img/iah.jpg";
+	var actorImg = new Image();
+	actorImg.src = "img/iah.jpg";
 	var c2 = document.getElementById("canvas");
 	context = c2.getContext("2d");
 	
@@ -31,7 +38,6 @@ function update(alpha, beta, gamma) {
 	
 	updatePosition(x_pos, y_pos, gamma, beta);
 	
-	context.clearRect(0,0,actorWidth, actorHeight);
 	context.setTransform(1,0,0,1, x_pos, y_pos);
 		
 	drawActor();
