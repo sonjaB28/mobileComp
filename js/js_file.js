@@ -76,7 +76,7 @@ window.addEventListener("keydown", function(e) {
 
 window.addEventListener("deviceorientation", deviceOrientationChanged(event), true);
 
-function deviceOrientationChanged(event) {
+function deviceOrientationChanged(e) {
 	var event = window.event||e;
 	setImages();
 	
@@ -90,8 +90,9 @@ function deviceOrientationChanged(event) {
 		gamma_standard = gamma;
 		doCalibrate = false;
 	}
-	
-	update(alpha-alpha_standard, beta-beta_standard, gamma-gamma_standard);
+	context.translate(15,0);
+	drawActor();
+	//update(alpha-alpha_standard, beta-beta_standard, gamma-gamma_standard);
 
 	document.querySelector("#mag_alpha").innerHTML = "alpha = " + alpha;
 	document.querySelector("#mag_beta").innerHTML = "beta = " + beta;
