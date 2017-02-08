@@ -59,11 +59,18 @@ function reset() {
 	context.clearRect(0, 0, canvasWidth, canvasHeight);
 	init();
 }
-
+function setVariables() {
+	
+}
 function resize() {
+	// resize canvas
 	context.canvas.width  = min(window.innerWidth, bgImg.naturalWidth);
 	context.canvas.height = min(window.innerHeight, bgImg.naturalHeight);
+	
+	// resize background and actor img
 	scale = context.canvas.width/bgImg.naturalWidth;
+
+	
 	drawCanvas();
 	document.querySelector("#text").innerHTML = "window width = " + window.innerWidth;
 }
@@ -122,7 +129,7 @@ window.addEventListener("deviceorientation", function(event) {
 function drawCanvas() {
 	context.setTransform(scale,0,0,scale, 0, 0);
 	context.drawImage(bgImg, 0, 0);
-	context.setTransform(1,0,0,1, x_pos, y_pos);
+	context.setTransform(scale,0,0,scale, scale*x_pos, scale*y_pos);
 	context.drawImage(actorImg, 0, 0);
 }
 
