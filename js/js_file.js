@@ -90,8 +90,10 @@ function deviceOrientationChanged(e) {
 		gamma_standard = gamma;
 		doCalibrate = false;
 	}
-	context.translate(15,0);
-	drawActor();
+	var c2 = document.getElementById("canvas");
+	context2 = c2.getContext("2d");
+	context2.translate(15,0);
+	context2.drawImage(actorImg, 0, 0);
 	//update(alpha-alpha_standard, beta-beta_standard, gamma-gamma_standard);
 
 	document.querySelector("#mag_alpha").innerHTML = "alpha = " + alpha;
