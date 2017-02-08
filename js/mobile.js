@@ -48,17 +48,10 @@ function init() {
 window.addEventListener("deviceorientation", deviceOrientationChanged(event), true);
 
 function deviceOrientationChanged(event) {
-	init();
 	var alpha = event.alpha;
 	var beta = event.beta;
 	var gamma = event.gamma;
-	
-	if(doCalibrate == true) {
-		alpha_standard = alpha;
-		beta_standard = beta;
-		gamma_standard = gamma;
-		doCalibrate = false;
-	}
+
 
 	document.querySelector("#mag_alpha").innerHTML = "alpha = " + alpha;
 	document.querySelector("#mag_beta").innerHTML = "beta = " + beta;
