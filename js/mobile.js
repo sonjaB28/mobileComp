@@ -4,7 +4,7 @@ bgImg_src = "img/MrLaba.jpg";
 
 // gloabl variables
 
-movement = 6;
+movement = 4;
 range = 2;
 doCalibrate = true;
 
@@ -45,6 +45,16 @@ function init() {
 	context.setTransform(1,0,0,1, x_pos, y_pos);
 }
 
+function calibrate() {
+	doCalibrate = true;
+}
+
+function reset() {
+	context.setTransform(1,0,0,1, 0, 0);
+	context.clearRect(0, 0, canvasWidth, canvasHeight);
+	init();
+}
+
 window.onload = function() {init();}
 
 window.addEventListener("deviceorientation", function(event) {
@@ -60,7 +70,6 @@ window.addEventListener("deviceorientation", function(event) {
 	}
 
 	update(alpha-alpha_standard, beta-beta_standard, gamma-gamma_standard);
-	//drawActor();
 
 	document.querySelector("#mag_alpha").innerHTML = "alpha = " + alpha;
 	document.querySelector("#mag_beta").innerHTML = "beta = " + beta;
@@ -70,6 +79,8 @@ window.addEventListener("deviceorientation", function(event) {
 function drawActor() {
 	context.drawImage(actorImg, 0, 0);
 }
+
+// movement functions
 
 function update(alpha, beta, gamma) {	
 	updatePosition(x_pos, y_pos, gamma, beta);
