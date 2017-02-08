@@ -48,8 +48,7 @@ function init() {
 window.addEventListener("deviceorientation", deviceOrientationChanged(event), true);
 
 function deviceOrientationChanged(event) {
-	var event = window.event||e;
-	
+	init();
 	var alpha = event.alpha;
 	var beta = event.beta;
 	var gamma = event.gamma;
