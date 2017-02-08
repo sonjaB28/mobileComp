@@ -7,7 +7,12 @@ gamma_standard = 0;
 // Mobile Usage 
 
 window.addEventListener("deviceorientation", function(event) {
-	document.querySelector("#mag_alpha").innerHTML = "alpha = " + event.alpha;
-	document.querySelector("#mag_beta").innerHTML = "beta = " + event.beta;
-	document.querySelector("#mag_gamma").innerHTML = "gamma = " + event.gamma;
+	var alpha = event.alpha;
+	var beta = event.beta;
+	var gamma = event.gamma;
+	
+
+	document.querySelector("#mag_alpha").innerHTML = "alpha = " + alpha;
+	document.querySelector("#mag_beta").innerHTML = "beta = " + beta;
+	document.querySelector("#mag_gamma").innerHTML = "gamma = " + gamma;
 }, true);
