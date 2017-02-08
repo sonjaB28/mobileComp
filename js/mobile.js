@@ -7,6 +7,7 @@ bgImg_src = "img/MrLaba.jpg";
 movement = 4;
 range = 2;
 doCalibrate = true;
+scale = 1;
 
 function init() {
 	x_pos = 5;
@@ -26,9 +27,7 @@ function init() {
 	// load canvas
 	var canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");
-	context.canvas.width  = window.innerWidth;
-	context.canvas.height = window.innerHeight;
-	document.querySelector("#text").innerHTML = "window width = " + window.innerWidth;
+	resize();
 	
 	// draw background
 	context.setTransform(1,0,0,1, 0, 0);
@@ -46,6 +45,9 @@ function init() {
 	
 	// place context at start coordinates
 	context.setTransform(1,0,0,1, x_pos, y_pos);
+	
+	// draw actor
+	drawCanvas();
 }
 
 function calibrate() {
@@ -58,7 +60,16 @@ function reset() {
 	init();
 }
 
+function resize() {
+	context.canvas.width  = min(window.innerWidth, bgImg.naturalWidth);
+	context.canvas.height = min(window.innerHeight, bgImg.naturalHeight);
+	scale = context.canvas.width/bgImg.naturalWidth;
+	drawCanvas();
+	document.querySelector("#text").innerHTML = "window width = " + window.innerWidth;
+}
+
 window.onload = function() {init();}
+window.onresize = function() {resize();}
 
 // Keyboard Usage
 window.addEventListener("keydown", function(e) {
@@ -108,7 +119,10 @@ window.addEventListener("deviceorientation", function(event) {
 	document.querySelector("#mag_gamma").innerHTML = "gamma = " + gamma;
 }, true);
 
-function drawActor() {
+function drawCanvas() {
+	context.setTransform(scale,0,0,scale, 0, 0);
+	context.drawImage(bgImg, 0, 0);
+	context.setTransform(1,0,0,1, x_pos, y_pos);
 	context.drawImage(actorImg, 0, 0);
 }
 
@@ -116,11 +130,8 @@ function drawActor() {
 
 function update(alpha, beta, gamma) {	
 	updatePosition(x_pos, y_pos, gamma, beta);
-	
-	context.clearRect(0,0,actorWidth, actorHeight);
-	context.setTransform(1,0,0,1, x_pos, y_pos);
-		
-	drawActor();
+
+	drawCanvas();
 }
 
 function updatePosition(x, y, gamma, beta) {
@@ -210,4 +221,13 @@ function slamsAWall(x, y, check_vertical) {
 		}
 	}
 	return false;	
+}
+
+// other functions
+function min(a, b) {
+	if(a<b) {
+		return a;
+	} else {
+		return b;
+	}
 }
