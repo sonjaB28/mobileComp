@@ -42,7 +42,7 @@ function setImages() {
 }
 
 // Keyboard Usage
-/*window.addEventListener("keydown", function(e) {
+window.addEventListener("keydown", function(e) {
 	var e = window.event||e;
 	var x_axis = 0;
 	var y_axis = 0;
@@ -67,7 +67,7 @@ function setImages() {
 	    break;
 	}
 	update(0, y_axis, x_axis);	
-}, true);*/
+}, true);
 
 
 
@@ -77,7 +77,7 @@ function setImages() {
 window.addEventListener("deviceorientation", deviceOrientationChanged(event), true);
 
 function deviceOrientationChanged(event) {
-	//var event = window.event||e;
+	var event = window.event||e;
 	
 	var alpha = event.alpha;
 	var beta = event.beta;
@@ -90,7 +90,7 @@ function deviceOrientationChanged(event) {
 		doCalibrate = false;
 	}
 	
-	//update(alpha-alpha_standard, beta-beta_standard, gamma-gamma_standard);
+	update(alpha-alpha_standard, beta-beta_standard, gamma-gamma_standard);
 
 	document.querySelector("#mag_alpha").innerHTML = "alpha = " + alpha;
 	document.querySelector("#mag_beta").innerHTML = "beta = " + beta;
