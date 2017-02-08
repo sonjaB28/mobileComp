@@ -77,8 +77,7 @@ window.addEventListener("keydown", function(e) {
 window.addEventListener("deviceorientation", deviceOrientationChanged(event), true);
 
 function deviceOrientationChanged(event) {
-	//var event = window.event||e;
-	//setImages();
+	var event = window.event||e;
 	
 	var alpha = event.alpha;
 	var beta = event.beta;
@@ -90,13 +89,8 @@ function deviceOrientationChanged(event) {
 		gamma_standard = gamma;
 		doCalibrate = false;
 	}
-	var actorImg2 = new Image();
-	actorImg2.src = "img/iah.jpg";
-	var c2 = document.getElementById("canvas");
-	context2 = c2.getContext("2d");
-	context2.translate(15,0);
-	context2.drawImage(actorImg2, 0, 0);
-	//update(alpha-alpha_standard, beta-beta_standard, gamma-gamma_standard);
+	
+	update(alpha-alpha_standard, beta-beta_standard, gamma-gamma_standard);
 
 	document.querySelector("#mag_alpha").innerHTML = "alpha = " + alpha;
 	document.querySelector("#mag_beta").innerHTML = "beta = " + beta;
@@ -123,7 +117,6 @@ function drawActor() {
 function updatePosition(x, y, gamma, beta) {
 	var x_dir = getDirection(gamma);
 	var y_dir = getDirection(beta);	
-	var probability_for_hit = 50;
 	
 	// check for wall in x direction
 	var slammedWall = false;
