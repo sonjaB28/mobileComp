@@ -24,7 +24,9 @@ window.addEventListener("deviceorientation", function(event) {
 	var c2 = document.getElementById("canvas");
 	context = c2.getContext("2d");
 	
-	update(alpha-alpha_standard, beta-beta_standard, gamma-gamma_standard);
+	drawActor();
+	
+	//update(alpha-alpha_standard, beta-beta_standard, gamma-gamma_standard);
 
 	document.querySelector("#mag_alpha").innerHTML = "alpha = " + alpha;
 	document.querySelector("#mag_beta").innerHTML = "beta = " + beta;
