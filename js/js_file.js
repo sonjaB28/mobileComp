@@ -77,7 +77,8 @@ window.addEventListener("keydown", function(e) {
 window.addEventListener("deviceorientation", deviceOrientationChanged(event), true);
 
 function deviceOrientationChanged(event) {
-	//var event = window.event||e;
+	var event = window.event||e;
+	setImages();
 	
 	var alpha = event.alpha;
 	var beta = event.beta;
