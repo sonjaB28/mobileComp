@@ -28,6 +28,7 @@ function init() {
 	context = canvas.getContext("2d");
 	context.canvas.width  = window.innerWidth;
 	context.canvas.height = window.innerHeight;
+	document.querySelector("#text").innerHTML = "window width = " + window.innerWidth;
 	
 	// draw background
 	context.setTransform(1,0,0,1, 0, 0);
@@ -59,6 +60,35 @@ function reset() {
 
 window.onload = function() {init();}
 
+// Keyboard Usage
+window.addEventListener("keydown", function(e) {
+	var e = window.event||e;
+	var x_axis = 0;
+	var y_axis = 0;
+	
+	
+	switch(e.keyCode) { 
+	  case 37: // left
+		x_axis = -(range+1);
+		e.preventDefault();
+	    break;
+	  case 38: // up
+		y_axis = -(range+1);
+		e.preventDefault();
+	    break;
+	  case 39: // right
+		x_axis = (range+1);
+		e.preventDefault();
+	    break;
+	  case 40: // down
+		y_axis = (range+1);
+		e.preventDefault();
+	    break;
+	}
+	update(0, y_axis, x_axis);	
+}, true);
+
+// mobile device
 window.addEventListener("deviceorientation", function(event) {
 	var alpha = event.alpha;
 	var beta = event.beta;
