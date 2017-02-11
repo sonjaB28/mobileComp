@@ -174,9 +174,9 @@ function update(alpha, beta, gamma) {
 		return;
 	}
 	if(landscape_mode) {
-		updatePosition(x_pos, y_pos, beta, gamma);
+		updatePosition(x_pos, y_pos, beta, -gamma);
 	} else {
-		updatePosition(x_pos, y_pos, -gamma, beta);
+		updatePosition(x_pos, y_pos, gamma, beta);
 	}
 	
 	drawCanvas();
