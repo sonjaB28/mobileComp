@@ -2,14 +2,16 @@
 <html>
 <head>
         <meta charset="utf-8" />
-
+		<meta name="viewport" content="width=device-width, initial-scale=1">
     
         
-		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/screen.css"/>
 		
         <title>Labyrinth Game</title>
 		
 		<!-- CHANGE THIS LATER !!!!! 
+		<link rel="stylesheet" type="text/css" href="css/handheld.css" media = handheld/>
+		<link rel="stylesheet" type="text/css" href="css/screen.css" media = screen/>
 		Directly linking jQuery like this is not recommended when creating apps, as it requires internet connection. -->
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -17,41 +19,48 @@
 		
 		<script src="js/mobile.js"></script>
 		
-    </head>
+</head>
 <body>
 
-<div data-role="page" id="pageone">
-  <div data-role="header" id="header">
-    <h1>Labyrinth</h1>
-  </div>
+<div data-role="page" id="menu">
+	 <div data-role="header" data-position="fixed" id="header" >
+		<h1>Labyrinth</h1>
+	</div>
+	
+	<div data-role= "main" class="ui-content">
+		<select id="level_selector">
+		  <option value="mon">MrLaba</option>
+		  <option value="tue">lab_056</option>
+		</select>
+		 <br />
+		<button class="ui-btn ui-btn-inline" onclick="startGame();">Play</button> 
+		
+		</div>
+</div>
+<div data-role="page" id="game">
+	 <div data-role="header" data-position="fixed" id="header2">
+		<h1>Labyrinth</h1>
+	</div>
 
   <div data-role="main" class="ui-content">
+	<div id="canvas_space">
 	<canvas id="canvas" width="600" height="600" style="border:1px solid #000000;"></canvas> 
-    <button class="ui-btn ui-shadow" onclick="calibrate();">Calibrate</button> 
-	<button class="ui-btn ui-shadow" onclick="reset();">Reset</button> 
-	
-	
+	</div>
 	<br />
+
 	<p id="mag_alpha">No magnetometer found.</p>
 	<p id="mag_beta"></p>
 	<p id="mag_gamma"></p>
 	<p id="text"></p>
   </div>
 
-  <div data-role="footer">
-    <h1>made by me</h1>
+  <div data-role="footer" data-position="fixed">
+	<button class="ui-btn ui-btn-inline" onclick="pause();" id=pause_btn>Pause</button> 
+    <button class="ui-btn ui-btn-inline" onclick="calibrate();">Calibrate</button> 
+	<button class="ui-btn ui-btn-inline" onclick="reset();">Reset</button> 
   </div>
 </div> 
 
 
-
-<!-- Paragraphs for the magnetometer values. 
-
--->
-
-
-
-
-<p>UPDated mobile 13</p>
 </body>
 </html>

@@ -8,14 +8,19 @@ movement = 4;
 range = 2;
 doCalibrate = true;
 scale = 1;
+landscape_mode = false;
+paused = false;
 
 function init() {
-	x_pos = 5;
-	y_pos = 5;
+	x_pos = 300;
+	y_pos = 300;
 	alpha_standard = 0;
 	beta_standard = 0;
 	gamma_standard = 0;
 	doCalibrate = true;	
+	
+	bg_x_pos = 0;
+	bg_y_pos = 0;
 	
 	// load images
 	actorImg = new Image();
@@ -27,7 +32,8 @@ function init() {
 	// load canvas
 	var canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");
-	resize();
+	context.canvas.height = bgImg.naturalHeight;
+	context.canvas.width = bgImg.naturalWidth;
 	
 	// draw background
 	context.setTransform(1,0,0,1, 0, 0);
@@ -47,7 +53,36 @@ function init() {
 	context.setTransform(1,0,0,1, x_pos, y_pos);
 	
 	// draw actor
+	resize();
 	drawCanvas();
+}
+
+
+function resize() {
+	// check if device in landscape_mode
+	if(window.innerHeight <= window.innerWidth) {
+		landscape_mode = true;
+	} else {
+		landscape_mode = false;
+	}
+	var height = document.getElementById("canvas_space").clientHeight;
+	var width = document.getElementById("canvas_space").clientWidth;
+	// update canvas size
+	context.canvas.height = min(height, bgImg.naturalHeight);
+	context.canvas.width = min(width, bgImg.naturalWidth);
+
+	drawCanvas();
+	document.querySelector("#text").innerHTML = "window width = " + width + " canvas width " + context.canvas.width;
+}
+
+// button functions
+function startGame() {
+	var elem = document.getElementById("level_selector");
+	var level = elem.options[elem.selectedIndex].text;
+	bgImg_src = "img/" + level + ".jpg";
+	document.getElementById("menu").style.display = 'none';
+	document.getElementById("game").style.display = 'block';
+	init();
 }
 
 function calibrate() {
@@ -59,23 +94,17 @@ function reset() {
 	context.clearRect(0, 0, canvasWidth, canvasHeight);
 	init();
 }
-function setVariables() {
-	
-}
-function resize() {
-	// resize canvas
-	context.canvas.width  = min(window.innerWidth, bgImg.naturalWidth);
-	context.canvas.height = min(window.innerHeight, bgImg.naturalHeight);
-	
-	// resize background and actor img
-	scale = context.canvas.width/bgImg.naturalWidth;
 
-	
-	drawCanvas();
-	document.querySelector("#text").innerHTML = "window width = " + window.innerWidth;
+function pause() {
+	if(paused) {
+		document.getElementById("pause_btn").innerHTML = "Pause";
+		paused = false;
+	} else {
+		document.getElementById("pause_btn").innerHTML = "Unpause";
+		paused = true;
+	}
 }
 
-window.onload = function() {init();}
 window.onresize = function() {resize();}
 
 // Keyboard Usage
@@ -103,6 +132,7 @@ window.addEventListener("keydown", function(e) {
 		e.preventDefault();
 	    break;
 	}
+	landscape_mode = false;
 	update(0, y_axis, x_axis);	
 }, true);
 
@@ -127,17 +157,28 @@ window.addEventListener("deviceorientation", function(event) {
 }, true);
 
 function drawCanvas() {
-	context.setTransform(scale,0,0,scale, 0, 0);
+
+	context.setTransform(1,0,0,1, 0, 0);
+	context.clearRect(0,0, context.canvas.width, context.canvas.height);
+	context.setTransform(1,0,0,1, 0, 0);
 	context.drawImage(bgImg, 0, 0);
-	context.setTransform(scale,0,0,scale, scale*x_pos, scale*y_pos);
+	context.setTransform(1,0,0,1, x_pos, y_pos);
 	context.drawImage(actorImg, 0, 0);
+
 }
 
 // movement functions
 
 function update(alpha, beta, gamma) {	
-	updatePosition(x_pos, y_pos, gamma, beta);
-
+	if(paused) {
+		return;
+	}
+	if(landscape_mode) {
+		updatePosition(x_pos, y_pos, beta, gamma);
+	} else {
+		updatePosition(x_pos, y_pos, gamma, beta);
+	}
+	
 	drawCanvas();
 }
 
@@ -228,6 +269,11 @@ function slamsAWall(x, y, check_vertical) {
 		}
 	}
 	return false;	
+}
+
+// movement of the background
+function updateBackgroundPosition() {
+	
 }
 
 // other functions
