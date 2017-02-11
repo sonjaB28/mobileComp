@@ -12,8 +12,8 @@ landscape_mode = false;
 paused = false;
 
 function init() {
-	x_pos = 300;
-	y_pos = 300;
+	x_pos = 5;
+	y_pos = 5;
 	alpha_standard = 0;
 	beta_standard = 0;
 	gamma_standard = 0;
@@ -176,7 +176,7 @@ function update(alpha, beta, gamma) {
 	if(landscape_mode) {
 		updatePosition(x_pos, y_pos, beta, gamma);
 	} else {
-		updatePosition(x_pos, y_pos, gamma, beta);
+		updatePosition(x_pos, y_pos, -gamma, beta);
 	}
 	
 	drawCanvas();
