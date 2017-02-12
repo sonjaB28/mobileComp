@@ -1,5 +1,5 @@
 // src files
-actorImg_src = "img/iah.jpg";
+actorImg_src = "img/iah_small.jpg";
 bgImg_src = "img/MrLaba.jpg";
 
 // gloabl variables
@@ -12,15 +12,16 @@ landscape_mode = false;
 paused = false;
 
 function init() {
-	x_pos = 5;
-	y_pos = 5;
+	pos_x = 5;
+	pos_y = 5;
 	alpha_standard = 0;
 	beta_standard = 0;
 	gamma_standard = 0;
 	doCalibrate = true;	
-	
-	bg_x_pos = 0;
-	bg_y_pos = 0;
+	paused = false;
+
+	offset_x = 0;
+	offset_y = 0;
 	
 	// load images
 	actorImg = new Image();
@@ -50,7 +51,7 @@ function init() {
 	imgData = context.getImageData(0, 0, canvasWidth,canvasHeight);
 	
 	// place context at start coordinates
-	context.setTransform(1,0,0,1, x_pos, y_pos);
+	context.setTransform(1,0,0,1, pos_x, pos_y);
 	
 	// draw actor
 	resize();
@@ -65,14 +66,17 @@ function resize() {
 	} else {
 		landscape_mode = false;
 	}
-	var height = document.getElementById("canvas_space").clientHeight;
+	var test = document.getElementById("footer_game").clientHeight;
+	var height = document.body.clientHeight
+			-document.getElementById("header_game").clientHeight
+			-document.getElementById("footer_game").clientHeight;
 	var width = document.getElementById("canvas_space").clientWidth;
 	// update canvas size
 	context.canvas.height = min(height, bgImg.naturalHeight);
 	context.canvas.width = min(width, bgImg.naturalWidth);
-
-	drawCanvas();
-	document.querySelector("#text").innerHTML = "window width = " + width + " canvas width " + context.canvas.width;
+	offset_x = 0;
+	offset_y = 0;
+	drawCanvas();	
 }
 
 // button functions
@@ -85,13 +89,16 @@ function startGame() {
 	init();
 }
 
+function menu() {
+	document.getElementById("menu").style.display = 'block';
+	document.getElementById("game").style.display = 'none';
+}
+
 function calibrate() {
 	doCalibrate = true;
 }
 
 function reset() {
-	context.setTransform(1,0,0,1, 0, 0);
-	context.clearRect(0, 0, canvasWidth, canvasHeight);
 	init();
 }
 
@@ -150,33 +157,27 @@ window.addEventListener("deviceorientation", function(event) {
 	}
 
 	update(alpha-alpha_standard, beta-beta_standard, gamma-gamma_standard);
-
-	document.querySelector("#mag_alpha").innerHTML = "alpha = " + alpha;
-	document.querySelector("#mag_beta").innerHTML = "beta = " + beta;
-	document.querySelector("#mag_gamma").innerHTML = "gamma = " + gamma;
 }, true);
 
 function drawCanvas() {
-
+	updateBackgroundPosition();
 	context.setTransform(1,0,0,1, 0, 0);
 	context.clearRect(0,0, context.canvas.width, context.canvas.height);
 	context.setTransform(1,0,0,1, 0, 0);
-	context.drawImage(bgImg, 0, 0);
-	context.setTransform(1,0,0,1, x_pos, y_pos);
-	context.drawImage(actorImg, 0, 0);
-
+	context.drawImage(bgImg, offset_x, offset_y);
+	context.setTransform(1,0,0,1, pos_x, pos_y);
+	context.drawImage(actorImg, offset_x, offset_y);
 }
 
 // movement functions
-
 function update(alpha, beta, gamma) {	
 	if(paused) {
 		return;
 	}
 	if(landscape_mode) {
-		updatePosition(x_pos, y_pos, beta, -gamma);
+		updatePosition(pos_x, pos_y, beta, -gamma);
 	} else {
-		updatePosition(x_pos, y_pos, gamma, beta);
+		updatePosition(pos_x, pos_y, gamma, beta);
 	}
 	
 	drawCanvas();
@@ -195,22 +196,21 @@ function updatePosition(x, y, gamma, beta) {
 				if(x_dir < 0) {
 					if(slamsAWall(x-i,y, true)) {
 						slammedWall = true;
-						x_pos = x-i+1;
+						pos_x = x-i+1;
 					} else {
-						x_pos = x-i;
+						pos_x = x-i;
 					}				
 				}
 				// move to right
 				else {
 					if(slamsAWall(x+actorWidth+i, y, true)) {
 						slammedWall = true;
-						x_pos = x+i-1;
+						pos_x = x+i-1;
 					} else {
-						x_pos = x+i;
+						pos_x = x+i;
 					}
 				}
-			}
-		
+			}		
 		}
 	}
 	//check for wall in y direction
@@ -222,22 +222,21 @@ function updatePosition(x, y, gamma, beta) {
 				if(y_dir < 0) {
 					if(slamsAWall(x,y-i, false)) {
 						slammedWall = true;
-						y_pos = y-i+1;
+						pos_y = y-i+1;
 					} else {
-						y_pos = y-i;
+						pos_y = y-i;
 					}				
 				}
 				// move down
 				else {
 					if(slamsAWall(x, y+actorHeight+i, false)) {
 						slammedWall = true;
-						y_pos = y+i-1;
+						pos_y = y+i-1;
 					} else {
-						y_pos = y+i;
+						pos_y = y+i;
 					}
 				}
-			}
-		
+			}		
 		}
 	}
 }
@@ -272,8 +271,13 @@ function slamsAWall(x, y, check_vertical) {
 }
 
 // movement of the background
-function updateBackgroundPosition() {
-	
+function updateBackgroundPosition() {	
+	if(pos_x > context.canvas.width/2 && pos_x < canvasWidth-context.canvas.width/2) {
+		offset_x = context.canvas.width/2-pos_x;
+	}
+	if(pos_y > context.canvas.height/2 && pos_y < canvasHeight-context.canvas.height/2) {
+		offset_y = context.canvas.height/2-pos_y;
+	}
 }
 
 // other functions

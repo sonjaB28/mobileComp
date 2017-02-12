@@ -23,7 +23,8 @@
 <body>
 
 <div data-role="page" id="menu">
-	 <div data-role="header" data-position="fixed" id="header" >
+	
+	 <div data-role="header" data-position="fixed">
 		<h1>Labyrinth</h1>
 	</div>
 	
@@ -35,26 +36,21 @@
 		 <br />
 		<button class="ui-btn ui-btn-inline" onclick="startGame();">Play</button> 
 		
-		</div>
+	</div>
 </div>
 <div data-role="page" id="game">
-	 <div data-role="header" data-position="fixed" id="header2">
+	<div data-role="header" id="header_game" data-position="fixed">
 		<h1>Labyrinth</h1>
 	</div>
+	
 
   <div data-role="main" class="ui-content">
-	<div id="canvas_space">
+	
 	<canvas id="canvas" width="600" height="600" style="border:1px solid #000000;"></canvas> 
-	</div>
-	<br />
-
-	<p id="mag_alpha">No magnetometer found.</p>
-	<p id="mag_beta"></p>
-	<p id="mag_gamma"></p>
-	<p id="text"></p>
+	
   </div>
 
-  <div data-role="footer" data-position="fixed">
+  <div data-role="footer" data-position="fixed" class="footer" id="footer_game">
 	<button class="ui-btn ui-btn-inline" onclick="pause();" id=pause_btn>Pause</button> 
     <button class="ui-btn ui-btn-inline" onclick="calibrate();">Calibrate</button> 
 	<button class="ui-btn ui-btn-inline" onclick="reset();">Reset</button> 
