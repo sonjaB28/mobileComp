@@ -1,10 +1,10 @@
 * {
 	text-align:center;
 }
-menu {
+#menu {
 	display:block;
 }
-game {
+#game {
 	display:none;
 }
 body, html {
