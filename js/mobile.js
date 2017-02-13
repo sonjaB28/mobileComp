@@ -66,10 +66,11 @@ function resize() {
 	} else {
 		landscape_mode = false;
 	}
+	var test = document.getElementById("footer_game").clientHeight;
 	var height = document.body.clientHeight
 			-document.getElementById("header_game").clientHeight
 			-document.getElementById("footer_game").clientHeight;
-	var width = screen.width | document.getElementById("canvas_space").clientWidth;
+	var width = document.getElementById("canvas_space").clientWidth;
 	// update canvas size
 	context.canvas.height = min(height, bgImg.naturalHeight);
 	context.canvas.width = min(width, bgImg.naturalWidth);
