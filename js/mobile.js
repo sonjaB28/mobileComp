@@ -18,7 +18,8 @@ function init() {
 	beta_standard = 0;
 	gamma_standard = 0;
 	doCalibrate = true;	
-	paused = false;
+	paused = true;
+	pause();
 
 	offset_x = 0;
 	offset_y = 0;
@@ -55,7 +56,6 @@ function init() {
 	
 	// draw actor
 	resize();
-	drawCanvas();
 }
 
 
@@ -69,7 +69,7 @@ function resize() {
 	var test = document.getElementById("footer_game").clientHeight;
 	var height = document.body.clientHeight
 			-document.getElementById("header_game").clientHeight
-			-document.getElementById("footer_game").clientHeight;
+			-2*document.getElementById("footer_game").clientHeight;
 	var width = document.getElementById("canvas_space").clientWidth;
 	// update canvas size
 	context.canvas.height = min(height, bgImg.naturalHeight);
@@ -84,14 +84,10 @@ function startGame() {
 	var elem = document.getElementById("level_selector");
 	var level = elem.options[elem.selectedIndex].text;
 	bgImg_src = "img/" + level + ".jpg";
-	document.getElementById("menu").style.display = 'none';
-	document.getElementById("game").style.display = 'block';
 	init();
 }
 
 function menu() {
-	document.getElementById("menu").style.display = 'block';
-	document.getElementById("game").style.display = 'none';
 }
 
 function calibrate() {
@@ -104,10 +100,10 @@ function reset() {
 
 function pause() {
 	if(paused) {
-		//document.getElementById("pause_btn").innerHTML = "Pause";
+		document.getElementById("pause_btn").innerHTML = "Pause";
 		paused = false;
 	} else {
-		//document.getElementById("pause_btn").innerHTML = "Unpause";
+		document.getElementById("pause_btn").innerHTML = "Unpause";
 		paused = true;
 	}
 }

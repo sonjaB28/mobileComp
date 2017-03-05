@@ -1,0 +1,9 @@
+.ui-icon-play:after {
+	background-image: url("../img/play-white.png");
+}
+.ui-icon-calibrate:after {
+	background-image: url("../img/calibrate-white.png");
+}
+* {
+	text-align:center;
+}

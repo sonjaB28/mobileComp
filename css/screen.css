@@ -1,7 +1,7 @@
 * {
 	text-align:center;
 }
-#menu {
+/*#menu {
 	display:block;
 }
 #game {
@@ -15,12 +15,12 @@ div.wrap {
 	overflow:hidden;
 }
 body {
-	/*overflow:hidden;*/
-}
+	overflow:hidden;
+}*/
 
 .ui-icon-play:after {
-	background-image: url("img/play-white.png");
+	background-image: url("../img/play-white.png");
 }
 .ui-icon-calibrate:after {
-	background-image: url("img/calibrate-white.png");
+	background-image: url("../img/calibrate-white.png");
 }
