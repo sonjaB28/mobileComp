@@ -1,5 +1,5 @@
 // src files
-actorImg_src = "img/iah_small.jpg";
+actorImg_src = "img/fluffball_small.png";
 bgImg_src = "img/MrLaba.jpg";
 
 // gloabl variables
@@ -104,10 +104,10 @@ function reset() {
 
 function pause() {
 	if(paused) {
-		document.getElementById("pause_btn").innerHTML = "Pause";
+		//document.getElementById("pause_btn").innerHTML = "Pause";
 		paused = false;
 	} else {
-		document.getElementById("pause_btn").innerHTML = "Unpause";
+		//document.getElementById("pause_btn").innerHTML = "Unpause";
 		paused = true;
 	}
 }
