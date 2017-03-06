@@ -28,6 +28,7 @@
 	<select id="level_selector">
 		  <option value="mon">MrLaba</option>
 		  <option value="tue">lab_056</option>
+		  <option value="tue">labyrinth</option>
 	</select>
 	<br />	
 	<a href="#game" class="ui-btn ui-btn-inline" onclick="startGame();">Play</a>
@@ -47,15 +48,16 @@
 	<div id="canvas_space">
 	<canvas id="canvas" width="200" height="200" style="border:1px solid #000000;"></canvas> 
 	</div>
+	<p id="text"><p>
   </div>
 
   <div data-role="footer" id="footer_game">
     <div data-role="navbar">
       <ul>
         <li><a href="#" onclick="pause();" data-icon="play" id="pause_btn">Pause</a></li>
-        <li><a href="#" onclick="reset();" data-icon="refresh">Reset</a></li>
-        <li><a href="#" onclick="calibrate();" data-icon="calibrate">Calibrate</a></li>
-        <li><a href="#menu" onclick="menu();" data-icon="home">Menu</a></li>
+        <li><a href="#" onclick="reset();" data-icon="refresh" id="reset_btn">Reset</a></li>
+        <li><a href="#" onclick="calibrate();" data-icon="calibrate" id="calibrate_btn">Calibrate</a></li>
+        <li><a href="#menu" onclick="menu();" data-icon="home" id="menu_btn">Menu</a></li>
       </ul>
     </div>
    </div>

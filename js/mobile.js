@@ -11,6 +11,10 @@ scale = 1;
 landscape_mode = false;
 paused = false;
 
+function addText() {
+	document.getElementById("text").innerHTML += ", " + context.canvas.height + " & " + context.canvas.width;
+}
+
 function init() {
 	pos_x = 5;
 	pos_y = 5;
@@ -54,7 +58,7 @@ function init() {
 	// place context at start coordinates
 	context.setTransform(1,0,0,1, pos_x, pos_y);
 	
-	// draw actor
+	// draw
 	resize();
 }
 
@@ -66,17 +70,23 @@ function resize() {
 	} else {
 		landscape_mode = false;
 	}
-	var test = document.getElementById("footer_game").clientHeight;
+
 	var height = document.body.clientHeight
 			-document.getElementById("header_game").clientHeight
 			-2*document.getElementById("footer_game").clientHeight;
-	var width = document.getElementById("canvas_space").clientWidth;
+	var width = document.body.clientWidth;
 	// update canvas size
 	context.canvas.height = min(height, bgImg.naturalHeight);
 	context.canvas.width = min(width, bgImg.naturalWidth);
+	
+	/*document.getElementById("text").innerHTML += " & berechnet: " + height + " " + 
+		document.getElementById("header_game").clientHeight + " " + 
+		2*document.getElementById("footer_game").clientHeight + " " + document.body.clientHeight +
+		" " + document.body.clientWidth;
+	*/
 	offset_x = 0;
 	offset_y = 0;
-	drawCanvas();	
+	drawCanvas();
 }
 
 // button functions
@@ -95,7 +105,27 @@ function calibrate() {
 }
 
 function reset() {
-	init();
+	pos_x = 5;
+	pos_y = 5;
+	alpha_standard = 0;
+	beta_standard = 0;
+	gamma_standard = 0;
+	doCalibrate = true;	
+	paused = true;
+	pause();
+
+	offset_x = 0;
+	offset_y = 0;
+	
+	// draw background
+	context.setTransform(1,0,0,1, 0, 0);
+	context.drawImage(bgImg, 0, 0);
+	
+	// place context at start coordinates
+	context.setTransform(1,0,0,1, pos_x, pos_y);
+	
+	// draw
+	resize();
 }
 
 function pause() {
