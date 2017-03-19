@@ -19,7 +19,7 @@
 </head>
 <body>
 <div data-role="page" id="menu">
-  <div data-role="header" data-position="fixed" id="header_menu">
+  <div data-role="header" data-position="fixed" data-tap-toggle="false" id="header_menu">
     <h1>Labyrinth</h1>
   </div>
 
@@ -34,13 +34,13 @@
 	<a href="#game" class="ui-btn ui-btn-inline" onclick="startGame();">Play</a>
   </div>
 
-  <div data-role="footer" data-position="fixed">
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" data-fullscreen="true">
     <h1>Footer Text</h1>
   </div>
 </div> 
 
 <div data-role="page" id="game">
-  <div data-role="header" data-position="fixed" id="header_game">
+  <div data-role="header" data-position="fixed" data-tap-toggle="false" id="header_game">
 	<a href="#menu" onclick="menu();" data-icon="home" id="menu_btn">Menu</a>
 	<h1>Labyrinth</h1>
 	<a href="#" onclick="reset();" data-icon="refresh" id="reset_btn">Reset</a>
@@ -53,7 +53,7 @@
 	<!--<p id="text"><p>-->
   </div>
 
-  <div data-role="footer" data-position="fixed" id="footer_game">
+  <div data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false" id="footer_game">
     <div data-role="navbar">
       <ul>
         <li><a href="#" onclick="pause();" data-icon="play" id="pause_btn">Pause</a></li>
