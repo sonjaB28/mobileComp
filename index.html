@@ -41,7 +41,9 @@
 
 <div data-role="page" id="game">
   <div data-role="header" data-position="fixed" id="header_game">
+	<a href="#menu" onclick="menu();" data-icon="home" id="menu_btn">Menu</a>
 	<h1>Labyrinth</h1>
+	<a href="#" onclick="reset();" data-icon="refresh" id="reset_btn">Reset</a>
   </div>
 
   <div data-role="main" class="ui-content">
@@ -55,9 +57,7 @@
     <div data-role="navbar">
       <ul>
         <li><a href="#" onclick="pause();" data-icon="play" id="pause_btn">Pause</a></li>
-        <li><a href="#" onclick="reset();" data-icon="refresh" id="reset_btn">Reset</a></li>
         <li><a href="#" onclick="calibrate();" data-icon="calibrate" id="calibrate_btn">Calibrate</a></li>
-        <li><a href="#menu" onclick="menu();" data-icon="home" id="menu_btn">Menu</a></li>
       </ul>
     </div>
    </div>

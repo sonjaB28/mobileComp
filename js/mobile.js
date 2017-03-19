@@ -2,7 +2,7 @@
 actorImg_src = "img/fluffball_small.png";
 bgImg_src = "img/MrLaba.jpg";
 
-// gloabl variables
+// global variables
 
 movement = 4;
 range = 2;
@@ -74,7 +74,7 @@ function resize() {
 	var height = document.body.clientHeight
 			-document.getElementById("header_game").clientHeight
 			-2*document.getElementById("footer_game").clientHeight;
-	var width = document.body.clientWidth;
+	var width = window.innerWidth-100;
 	// update canvas size
 	context.canvas.height = min(height, bgImg.naturalHeight);
 	context.canvas.width = min(width, bgImg.naturalWidth);
