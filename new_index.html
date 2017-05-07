@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>Labyrinth Game</title> 
+	
+	<link rel="stylesheet" type="text/css" href="css/design_page.css">
+	<!-- Include jQuery Mobile stylesheets -->
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+	<!-- Include the jQuery library -->
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+	<!-- Include the jQuery Mobile library -->
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	
+	<script src="js/script.js"></script>
+	
+</head>
+<body>
+<div data-role="page" id="game">
+  <div data-role="header" data-position="fixed" data-tap-toggle="false" id="header_game">
+	<h1>Labyrinth</h1>
+  </div>
+
+  <div data-role="main" class="ui-content" id="body_game">
+	<div id="canvas_space">
+	<canvas id="canvas" width="200" height="200" style="border:1px solid #000000;"></canvas> 
+	</div>
+	<!--<p id="text"><p>-->
+  </div>
+
+  <div data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false" id="footer_game">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#" onclick="pause();" data-icon="play" id="pause_btn">Pause</a></li>
+		<li><a href="#" onclick="reset();" data-icon="refresh" id="reset_btn">Reset</a></li>		
+        <li><a href="#" onclick="calibrate();" data-icon="calibrate" id="calibrate_btn">Calibrate</a></li>
+      </ul>
+    </div>
+   </div>
+  </div>
+</div> 
+
+</body>
+</html>

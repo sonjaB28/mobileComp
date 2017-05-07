@@ -73,7 +73,7 @@ function resize() {
 
 	var height = document.body.clientHeight
 			-document.getElementById("header_game").clientHeight
-			-document.getElementById("footer_game").clientHeight;
+			-1.2*document.getElementById("footer_game").clientHeight;
 	var width = window.innerWidth-100;
 	// update canvas size
 	context.canvas.height = min(height, bgImg.naturalHeight);
