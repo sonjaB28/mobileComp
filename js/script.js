@@ -1,6 +1,7 @@
 // global variables 
 doCalibrate = true;
 paused = false;
+landscape_mode = false;
 
 // constants
 movement = 4;
@@ -15,6 +16,10 @@ if (document.images) {
 	img1.src = "img/labyrinth.jpg";
 	img2.src = "img/fluffball.png";
 	img3.src = "img/MrLaba.jpg";
+	
+	
+	actorImg = new Image();
+	actorImg.src = "img/fluffball_small.png";
 }
 
 window.onload = function() {
@@ -36,9 +41,7 @@ function init() {
 	pause();
 
 // load images	
-	actorImg = new Image();
-	actorImg.src = "img/fluffball_small.png";
-	bgImg = img3;
+	bgImg = img1;
 	
 // load canvas
 	var canvas = document.getElementById("canvas");
@@ -129,6 +132,7 @@ window.addEventListener("keydown", function(e) {
 		e.preventDefault();
 	    break;
 	}
+	landscape_mode = false;
 	update(0, y_axis, x_axis);	
 }, true);
 
@@ -153,7 +157,11 @@ function update(alpha, beta, gamma) {
 	if(paused) {
 		return;
 	}
-
+	if(landscape_mode) {
+		updatePosition(pos_x, pos_y, beta, -gamma);
+	} else {
+		updatePosition(pos_x, pos_y, gamma, beta);
+	}
 	updatePosition(pos_x, pos_y, gamma, beta);
 
 	draw();
@@ -256,7 +264,14 @@ function updateBackgroundPosition() {
 
 // drawing functions
 function resize() {
-	
+	// check if device in landscape_mode
+	if(window.innerHeight <= window.innerWidth) {
+		landscape_mode = true;
+	} else {
+		landscape_mode = false;
+	}
+	offset_x = 0;
+	offset_y = 0;
 	var height = document.body.clientHeight
 			-document.getElementById("header_game").clientHeight
 			-1.2*document.getElementById("footer_game").clientHeight;
