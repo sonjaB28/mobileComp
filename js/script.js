@@ -71,7 +71,25 @@ function calibrate() {
 	doCalibrate = true;
 }
 
-function reset() {
+function reset() {	
+	pos_x = 5;
+	pos_y = 5;
+	alpha_standard = 0;
+	beta_standard = 0;
+	gamma_standard = 0;
+	doCalibrate = true;	
+	paused = true;
+	pause();
+
+	offset_x = 0;
+	offset_y = 0;
+	
+	// draw background
+	context.setTransform(1,0,0,1, 0, 0);
+	context.drawImage(bgImg, 0, 0);
+	
+	// place context at start coordinates
+	context.setTransform(1,0,0,1, pos_x, pos_y);
 // draw
 	resize();
 }
