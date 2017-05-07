@@ -83,6 +83,7 @@ function calibrate() {
 
 function reset() {	
 	resetTimer();
+	finished = false;
 	pos_x = 5;
 	pos_y = 5;
 	alpha_standard = 0;
