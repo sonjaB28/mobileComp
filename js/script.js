@@ -38,7 +38,7 @@ function init() {
 // load images	
 	actorImg = new Image();
 	actorImg.src = "img/fluffball_small.png";
-	bgImg = img1;
+	bgImg = img3;
 	
 // load canvas
 	var canvas = document.getElementById("canvas");
@@ -252,7 +252,7 @@ function resize() {
 }
 
 function draw() {
-	//updateBackgroundPosition();
+	updateBackgroundPosition();
 	context.setTransform(1,0,0,1, 0, 0);
 	context.clearRect(0,0, context.canvas.width, context.canvas.height);
 	context.setTransform(1,0,0,1, 0, 0);
