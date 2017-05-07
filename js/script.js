@@ -2,6 +2,7 @@
 doCalibrate = true;
 paused = false;
 landscape_mode = false;
+finished = false;
 
 // constants
 movement = 4;
@@ -26,12 +27,13 @@ window.onload = function() {
   init();
 };
 
-window.onresize = function() {resize();}
+window.onresize = function() {resize();};
 window.addEventListener("orientationchange", function() {
 	resize();
-	// Announce the new orientation number
-	alert(screen.orientation);
 }, false);
+window.onblur = function(){	
+	pause();
+};
 
 function init() {	
 	pos_x = 5;
@@ -80,6 +82,7 @@ function calibrate() {
 }
 
 function reset() {	
+	resetTimer();
 	pos_x = 5;
 	pos_y = 5;
 	alpha_standard = 0;
@@ -104,9 +107,13 @@ function reset() {
 
 function pause() {
 	if(paused) {
+		startTimer();
 		document.getElementById("pause_btn").innerHTML = "Pause";
 		paused = false;
 	} else {
+		if(!finished) {
+			stopTimer();
+		}
 		document.getElementById("pause_btn").innerHTML = "Unpause";
 		paused = true;
 	}
@@ -167,8 +174,20 @@ function update(alpha, beta, gamma) {
 	} else {
 		updatePosition(pos_x, pos_y, gamma, beta);
 	}
-	updatePosition(pos_x, pos_y, gamma, beta);
 
+	// finish space reached?
+	if(!finished) {
+		var i = ((pos_y-2)*canvasWidth+pos_x-2)*4;
+		if(imgData.data[i] < 100 & imgData.data[i+1] > 100 & imgData.data[i+2] < 100) {
+			finished = true;
+			stopTimer();
+			var time = getTime();		
+			resetTimer();
+			alert("You've won!! Your time: " + time);
+		}
+	}
+	
+	
 	draw();
 }
 
@@ -229,18 +248,19 @@ function updatePosition(x, y, gamma, beta) {
 		}
 	}
 }
+
 function slamsAWall(x, y, check_vertical) {
 	if(check_vertical) {
 		for(var p = 0; p < actorHeight; p++) {
 			var index = ((y+p)*canvasWidth+x)*4;
-			if(imgData.data[index] < 50 && imgData.data[index+1] < 50 && imgData.data[index+2] < 50) {
+			if(imgData.data[index] < 50 & imgData.data[index+1] < 50 & imgData.data[index+2] < 50) {
 				return true;
 			}
 		}
 	} else {
 		for(var q = 0; q < actorWidth; q++) {
 			var index = (y*canvasWidth+x+q)*4;
-			if(imgData.data[index] < 50 && imgData.data[index+1] < 50 && imgData.data[index+2] < 50) {
+			if(imgData.data[index] < 50 & imgData.data[index+1] < 50 & imgData.data[index+2] < 50) {
 				return true;
 			}
 		}
@@ -310,6 +330,24 @@ function min(a, b) {
 		return b;
 	}
 }
-function addText() {
-	document.getElementById("text").innerHTML += ", " + "LALALALALA" + " & " + "";
+
+// timer functions
+runningTime = 0;
+var myVar = setInterval(function(){time()},1);
+
+function startTimer() {
+	start = new Date();
+}
+function stopTimer() {
+	var now = new Date();
+	var current = now.getTime() - start.getTime();
+	runningTime += current;
+}
+function resetTimer() {
+	runningTime = 0;
+}
+function getTime() {
+	var sec = Math.floor(runningTime / 1000);
+	var mSec = runningTime % 1000;
+	return sec + " s " + mSec + " ms";
 }
