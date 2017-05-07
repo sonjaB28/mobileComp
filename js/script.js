@@ -157,11 +157,7 @@ function update(alpha, beta, gamma) {
 	if(paused) {
 		return;
 	}
-	if(landscape_mode) {
-		updatePosition(pos_x, pos_y, beta, -gamma);
-	} else {
-		updatePosition(pos_x, pos_y, gamma, beta);
-	}
+
 	updatePosition(pos_x, pos_y, gamma, beta);
 
 	draw();
@@ -265,11 +261,10 @@ function updateBackgroundPosition() {
 // drawing functions
 function resize() {
 	// check if device in landscape_mode
-	if(window.innerHeight <= window.innerWidth) {
-		landscape_mode = true;
-	} else {
-		landscape_mode = false;
+	if(window.innerHeight > window.innerWidth){
+		document.getElementsByTagName("body")[0].style.transform = "rotate(90deg)";
 	}
+
 	offset_x = 0;
 	offset_y = 0;
 	var height = document.body.clientHeight
