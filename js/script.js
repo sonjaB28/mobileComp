@@ -27,6 +27,10 @@ window.onload = function() {
 };
 
 window.onresize = function() {resize();}
+window.addEventListener("orientationchange", function() {
+	// Announce the new orientation number
+	alert(screen.orientation);
+}, false);
 
 function init() {	
 	pos_x = 5;
