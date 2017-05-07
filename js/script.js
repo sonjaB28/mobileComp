@@ -270,7 +270,7 @@ function resize() {
 	} else {
 		landscape_mode = false;
 	}
-	calibrate = true;
+	doCalibrate = true;
 	offset_x = 0;
 	offset_y = 0;
 	var height = document.body.clientHeight
