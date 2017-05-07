@@ -266,10 +266,11 @@ function updateBackgroundPosition() {
 function resize() {
 	// check if device in landscape_mode
 	if(window.innerHeight <= window.innerWidth) {
-		document.getElementsByTagName("body")[0].style.transform = "rotate(90deg)";
+		landscape_mode = true;
 	} else {
 		landscape_mode = false;
 	}
+	calibrate = true;
 	offset_x = 0;
 	offset_y = 0;
 	var height = document.body.clientHeight
