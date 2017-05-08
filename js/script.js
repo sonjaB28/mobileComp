@@ -203,8 +203,7 @@ function update(alpha, beta, gamma) {
 	// finish space reached?
 	if(!finished) {
 		var i = ((pos_y-2)*canvasWidth+pos_x-2)*4;
-		if(imgData.data[i] < 100 & imgData.data[i+1] > 100 & imgData.data[i+2] < 100) {
-			finished = true;
+		if(imgData.data[i] < 100 & imgData.data[i+1] > 100 & imgData.data[i+2] < 100) {			
 			stopTimer();
 			var time = getTime();		
 			resetTimer();
@@ -212,6 +211,7 @@ function update(alpha, beta, gamma) {
 			
 			currentLevel++;							
 			if(currentLevel == maxNumberOfLevels) {
+				finished = true;
 				return;
 			}
 			else if(currentLevel == lionlevel) {
