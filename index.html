@@ -6,13 +6,16 @@
     <title>Labyrinth Game</title> 
 	
 	<link rel="stylesheet" type="text/css" href="css/design_page.css">
-	
-	<link rel="stylesheet" href="themes/green.min.css" />
-	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<!-- Include jQuery Mobile stylesheets -->
+		<link rel="stylesheet" href="themes/green.min.css" />
+<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 
+	<!-- Include the jQuery library -->
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+	<!-- Include the jQuery Mobile library -->
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<script src="js/script.js"></script>
 	
 </head>
@@ -24,10 +27,10 @@
 
   <div data-role="main" class="ui-content" id="body_game">
 	<div id="entree">
-		<canvas id="preview" width="200" height="200"></canvas>
+		<canvas id="preview" width="200" height="200" style="border:1px solid #000000;"></canvas>
 	</div>
 	<div id="canvas_space">
-		<canvas id="canvas" width="200" height="200"></canvas> 
+		<canvas id="canvas" width="200" height="200" style="border:1px solid #000000;"></canvas> 
 	</div>
 	
 	<p id="text"><p>
