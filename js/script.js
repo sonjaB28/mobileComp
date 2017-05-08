@@ -217,6 +217,7 @@ function update(alpha, beta, gamma) {
 			}
 			else if(currentLevel == lionlevel) {
 				actorImg.src = smallerActorSrc;
+				movement = movement/2;
 			}
 			countDown();
 		}
