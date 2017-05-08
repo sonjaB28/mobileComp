@@ -54,7 +54,7 @@ function init() {
 	pause();
 
 // load images	
-	bgImg = img1;
+	bgImg = img3;
 	
 // load canvas
 	var canvas = document.getElementById("canvas");
@@ -96,7 +96,10 @@ function reset() {
 	beta_standard = 0;
 	gamma_standard = 0;
 	doCalibrate = true;	
-	paused = true;
+	paused = true;	
+	var pause_btn = document.getElementById("pause_btn");
+	pause_btn.classList.toggle("ui-icon-play");				
+	pause_btn.classList.toggle("ui-icon-pause");
 	pause();
 
 	offset_x = 0;
