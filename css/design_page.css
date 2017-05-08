@@ -17,3 +17,9 @@ body {
   min-height: 100%;
   overflow: hidden;
 }
+#canvas_space {
+	display:none;
+}
+#countdown {
+	font-size: xx-large;
+}

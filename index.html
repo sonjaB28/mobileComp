@@ -21,12 +21,15 @@
 <body>
 <div data-role="page" id="game">
   <div data-role="header" data-position="fixed" data-tap-toggle="false" id="header_game">
-	<h1>Labyrinth</h1>
+	<h1>FIND THE WAY</h1>
   </div>
 
   <div data-role="main" class="ui-content" id="body_game">
+	<div id="entree">
+		<canvas id="preview" width="200" height="200" style="border:1px solid #000000;"></canvas>
+	</div>
 	<div id="canvas_space">
-	<canvas id="canvas" width="200" height="200" style="border:1px solid #000000;"></canvas> 
+		<canvas id="canvas" width="200" height="200" style="border:1px solid #000000;"></canvas> 
 	</div>
 	
 	<p id="text"><p>

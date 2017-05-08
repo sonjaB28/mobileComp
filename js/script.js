@@ -1,31 +1,47 @@
 // global variables 
-doCalibrate = true;
-paused = false;
-landscape_mode = false;
-finished = false;
+var doCalibrate = true;
+var paused = false;
+var landscape_mode = false;
+var finished = false;
 
 // constants
-movement = 4;
-range = 2;
-start_value = 10;
+var movement = 4;
+var range = 2;
+var start_value = 10;
+var countdown = 3;
+var lionlevel = 2;
+
+//level
+var level = new Array();
+var levelPreview = new Array();
+var currentLevel = 0;
+var maxNumberOfLevels = 3;
 
 // preload image data
 if (document.images) {
-	var img1 = new Image();
-	var img2 = new Image();
-	var img3 = new Image();
+	level[0] = new Image();
+	level[1] = new Image();
+	level[2] = new Image();
 
-	img1.src = "img/lab10_5.png";
-	img2.src = "img/lab20_1.png";
-	img3.src = "img/lab_lion.png";
+	level[0].src = "img/lab10_5.png";
+	level[1].src = "img/lab20_1.png";
+	level[2].src = "img/lab_lion.png";
 	
+	levelPreview[0] = new Image();
+	levelPreview[0].src = "img/lab10_5_masked.png";
+	levelPreview[1] = new Image();
+	levelPreview[1].src = "img/lab20_1_masked.png";
+	levelPreview[2] = new Image();
+	levelPreview[2].src = "img/lab_lion_masked.png";
 	
 	actorImg = new Image();
 	actorImg.src = "img/fluffball_small.png";
+	smallerActorSrc = "img/fluffball_small_small.png";
 }
 
-window.onload = function() {
-  init();
+window.onload = function() {	
+	currentLevel = 0;
+	countDown(); 
 };
 
 window.onresize = function() {resize();};
@@ -51,7 +67,7 @@ function init() {
 	pause();
 
 // load images	
-	bgImg = img2;
+	bgImg = level[currentLevel];
 	
 // load canvas
 	var canvas = document.getElementById("canvas");
@@ -193,6 +209,15 @@ function update(alpha, beta, gamma) {
 			var time = getTime();		
 			resetTimer();
 			alert("You've won!! Your time: " + time);
+			
+			currentLevel++;							
+			if(currentLevel == maxNumberOfLevels) {
+				return;
+			}
+			else if(currentLevel == lionlevel) {
+				actorImg.src = smallerActorSrc;
+			}
+			countDown();
 		}
 	}
 	
@@ -329,8 +354,6 @@ function draw() {
 	context.drawImage(actorImg, offset_x, offset_y);
 }
 
-
-
 // other functions
 function min(a, b) {
 	if(a<b) {
@@ -338,6 +361,38 @@ function min(a, b) {
 	} else {
 		return b;
 	}
+}
+
+// countdown
+function countDown() {	
+	document.getElementById("canvas_space").style.display = "none";
+	document.getElementById("entree").style.display = "inherit";
+	
+	counter = countdown;
+	putCounter(counter);
+	counter--;
+	countTimer = setInterval(function() {
+		putCounter(counter);
+		counter--;
+		if(counter < 0) {
+			clearInterval(countTimer);			
+			document.getElementById("entree").style.display = "none";
+			document.getElementById("canvas_space").style.display = "inherit";
+			init();
+		}
+	},1000);
+}
+function putCounter(cnt) {
+	var can = document.getElementById("preview");
+	var cxt = can.getContext("2d");
+	
+	cxt.setTransform(1,0,0,1, 0, 0);
+	cxt.clearRect(0,0, cxt.canvas.width, cxt.canvas.height);
+	cxt.drawImage(levelPreview[currentLevel], 0, 0);
+	cxt.font = "50px Arial";
+	cxt.fillStyle = "black";
+	cxt.textAlign = "center";
+	cxt.fillText(cnt, can.width/2, (can.height/2+12));
 }
 
 // timer functions
