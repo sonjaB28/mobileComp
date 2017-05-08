@@ -62,6 +62,7 @@ function init() {
 	gamma_standard = 0;	
 	offset_x = 0;
 	offset_y = 0;
+	finished = false;
 	doCalibrate = true;	
 	paused = true;	
 	pause();
@@ -203,7 +204,8 @@ function update(alpha, beta, gamma) {
 	// finish space reached?
 	if(!finished) {
 		var i = ((pos_y-2)*canvasWidth+pos_x-2)*4;
-		if(imgData.data[i] < 100 & imgData.data[i+1] > 100 & imgData.data[i+2] < 100) {			
+		if(imgData.data[i] < 100 & imgData.data[i+1] > 100 & imgData.data[i+2] < 100) {
+			finished = true;
 			stopTimer();
 			var time = getTime();		
 			resetTimer();
@@ -211,7 +213,6 @@ function update(alpha, beta, gamma) {
 			
 			currentLevel++;							
 			if(currentLevel == maxNumberOfLevels) {
-				finished = true;
 				return;
 			}
 			else if(currentLevel == lionlevel) {
