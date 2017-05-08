@@ -21,7 +21,7 @@ if (document.images) {
 	
 	
 	actorImg = new Image();
-	actorImg.src = "img/fluffball_small_small.png";
+	actorImg.src = "img/fluffball_small.png";
 }
 
 window.onload = function() {
@@ -48,13 +48,10 @@ function init() {
 	offset_y = 0;
 	doCalibrate = true;	
 	paused = true;	
-	var pause_btn = document.getElementById("pause_btn");
-	pause_btn.classList.toggle("ui-icon-play");				
-	pause_btn.classList.toggle("ui-icon-pause");
 	pause();
 
 // load images	
-	bgImg = img3;
+	bgImg = img2;
 	
 // load canvas
 	var canvas = document.getElementById("canvas");
@@ -97,9 +94,6 @@ function reset() {
 	gamma_standard = 0;
 	doCalibrate = true;	
 	paused = true;	
-	var pause_btn = document.getElementById("pause_btn");
-	pause_btn.classList.toggle("ui-icon-play");				
-	pause_btn.classList.toggle("ui-icon-pause");
 	pause();
 
 	offset_x = 0;
@@ -120,15 +114,15 @@ function pause() {
 	if(paused) {
 		startTimer();
 		btn.innerHTML = "Pause";
-		btn.classList.toggle("ui-icon-play");				
-		btn.classList.toggle("ui-icon-pause");
+		btn.classList.toggle("ui-icon-play",true);				
+		btn.classList.toggle("ui-icon-pause",false);
 		paused = false;
 	} else {
 		if(!finished) {
 			stopTimer();
 		}	    		
-		btn.classList.toggle("ui-icon-play");	
-		btn.classList.toggle("ui-icon-pause");		
+		btn.classList.toggle("ui-icon-play",false);	
+		btn.classList.toggle("ui-icon-pause",true);		
 		btn.innerHTML = "Unpause";
 		paused = true;
 	}
