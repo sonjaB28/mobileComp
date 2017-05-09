@@ -25,14 +25,14 @@ if (document.images) {
 
 	level[0].src = "img/lab10_5.png";
 	level[1].src = "img/lab20_1.png";
-	level[2].src = "img/lab_lion.png";
+	level[lionlevel].src = "img/lab_lion.png";
 	
 	levelPreview[0] = new Image();
 	levelPreview[0].src = "img/lab10_5_masked.png";
 	levelPreview[1] = new Image();
 	levelPreview[1].src = "img/lab20_1_masked.png";
-	levelPreview[2] = new Image();
-	levelPreview[2].src = "img/lab_lion_masked.png";
+	levelPreview[lionlevel] = new Image();
+	levelPreview[lionlevel].src = "img/lab_lion_masked.png";
 	
 	actorImg = new Image();
 	actorImg.src = "img/fluffball_small.png";
@@ -218,6 +218,7 @@ function update(alpha, beta, gamma) {
 			else if(currentLevel == lionlevel) {
 				actorImg.src = smallerActorSrc;
 				movement = movement/2;
+				range = range * 2;
 			}
 			countDown();
 		}
@@ -417,17 +418,3 @@ function getTime() {
 	var mSec = runningTime % 1000;
 	return sec + " s " + mSec + " ms";
 }
-
-//navigator.wakeLock is the main standby API property.
-//request method requests the computer to not enter standby mode. Here "display" indicates that the monitor shouldn't enter standby mode.
-navigator.wakeLock.request("display").then(
-    function successFunction() {
-        // success
-    },
-    function errorFunction() {
-        // error
-    }
-);
-
-//release() is used to release the lock.
-//navigator.wakeLock.release("display");
