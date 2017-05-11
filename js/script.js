@@ -9,30 +9,42 @@ var movement = 4;
 var range = 2;
 var start_value = 10;
 var countdown = 3;
-var lionlevel = 2;
+var lionlevel = 4;
 
 //level
 var level = new Array();
 var levelPreview = new Array();
 var currentLevel = 0;
-var maxNumberOfLevels = 3;
+var maxNumberOfLevels = 6;
 
 // preload image data
 if (document.images) {
 	level[0] = new Image();
 	level[1] = new Image();
 	level[2] = new Image();
+	level[3] = new Image();
+	level[4] = new Image();
+	level[5] = new Image();
 
 	level[0].src = "img/lab10_5.png";
-	level[1].src = "img/lab20_1.png";
-	level[lionlevel].src = "img/lab_lion.png";
+	level[1].src = "img/lab10_7.png";
+	level[2].src = "img/lab20_1.png";
+	level[3].src = "img/lab20_7.png";
+	level[4].src = "img/lab50_1.png";
+	level[5].src = "img/lab_lion.png";
 	
 	levelPreview[0] = new Image();
 	levelPreview[0].src = "img/lab10_5_masked.png";
 	levelPreview[1] = new Image();
-	levelPreview[1].src = "img/lab20_1_masked.png";
-	levelPreview[lionlevel] = new Image();
-	levelPreview[lionlevel].src = "img/lab_lion_masked.png";
+	levelPreview[1].src = "img/lab10_7_masked.png";
+	levelPreview[2] = new Image();
+	levelPreview[2].src = "img/lab20_1_masked.png";
+	levelPreview[3] = new Image();
+	levelPreview[3].src = "img/lab20_7_masked.png";
+	levelPreview[4] = new Image();
+	levelPreview[4].src = "img/lab50_1_masked.png";
+	levelPreview[5] = new Image();
+	levelPreview[5].src = "img/lab_lion_masked.png";
 	
 	actorImg = new Image();
 	actorImg.src = "img/fluffball_small.png";
