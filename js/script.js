@@ -9,7 +9,7 @@ var movement = 4;
 var range = 2;
 var start_value = 10;
 var countdown = 3;
-var lionlevel = 4;
+var lionlevel = 5;
 
 //level
 var level = new Array();
